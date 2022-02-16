@@ -1,0 +1,15 @@
+.product {
+    margin: 50px 0;
+}
+
+.product p {
+    margin: 26px 0 17px;
+}
+
+.product .price {
+    color: #000CFF;
+}
+
+.product button {
+    margin-top: 15px;
+}
