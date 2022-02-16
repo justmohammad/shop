@@ -42,15 +42,15 @@ const ContentShop = () => {
                         <p>Showing 1–6 of 9 results</p>
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                sort
+                                {stateSort}
                                 <i>
                                     <BsChevronDown/>
                                 </i>
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => setStateSort('Ascending')}>Ascending</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStateSort('Descending')}>Descending</Dropdown.Item>
+                                <Dropdown.Item onClick={()=>setStateSort('Ascending')}>Ascending</Dropdown.Item>
+                                <Dropdown.Item onClick={()=>setStateSort('Descending')}>Descending</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
