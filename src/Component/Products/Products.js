@@ -2,10 +2,10 @@ import React from 'react';
 import SingleProduct from "../SingleProduct/SingleProduct";
 import './Products.css'
 
-const Products = () => {
+const Products = ({product}) => {
     return (
         <div className="products">
-            <SingleProduct/>
+            <SingleProduct product={product}/>
         </div>
     );
 };

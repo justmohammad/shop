@@ -1,10 +1,25 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Dropdown, Pagination} from "react-bootstrap";
 import {BsChevronDown} from "react-icons/bs";
 import Products from "../Products/Products";
 import './ContentShop.css'
+import axios from "axios";
 
 const ContentShop = () => {
+
+    const [product, setProduct] = useState([])
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
+    }, [])
+
+    const calculatePage = (product) => {
+        if (product.length % 6 === 0) {
+            return product.length / 6;
+        } else {
+            return product.length / 6 + 1;
+        }
+    }
 
     return (
         <section>
@@ -29,15 +44,15 @@ const ContentShop = () => {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <Products/>
+                    <Products product={product}/>
                 </div>
 
                 <div className="pagination">
-                            <Pagination.Item>1</Pagination.Item>
-                            <Pagination.Item>1</Pagination.Item>
-                            <Pagination.Item>1</Pagination.Item>
-                            <Pagination.Item>1</Pagination.Item>
-                            <Pagination.Item>1</Pagination.Item>
+                    {
+                        new Array(calculatePage(product)).fill(0).map((value,index) =>
+                            <Pagination.Item>{index+1}</Pagination.Item>
+                        )
+                    }
                 </div>
             </Container>
         </section>
