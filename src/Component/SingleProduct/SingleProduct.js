@@ -8,7 +8,7 @@ const SingleProduct = ({product,page}) => {
         <>
             {
                 product.slice((page-1)*6,page*6).map(value =>
-                    <Col md={"4"} className="product">
+                     <Col md={"4"} className="product">
                         <img src={value.img} alt=""/>
                         <p>{value.title}</p>
                         <div className="price">{`$${value.price}`}</div>

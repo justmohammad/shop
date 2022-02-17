@@ -9,10 +9,19 @@ const ContentShop = () => {
 
     const [product, setProduct] = useState([]);
     const [page, setPage] = useState(1);
+    const [stateSort, setStateSort] = useState('Ascending');
 
     useEffect(() => {
         axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
     }, [])
+
+    const productWithSort = (state) => {
+        if (state === 'Ascending') {
+            return product.sort((a, b) => a.price - b.price)
+        } else {
+            return product.sort((a, b) => b.price - a.price)
+        }
+    }
 
     const calculatePage = (product) => {
         if (product.length % 6 === 0) {
@@ -40,12 +49,12 @@ const ContentShop = () => {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item>Ascending</Dropdown.Item>
-                                <Dropdown.Item>Descending</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStateSort('Ascending')}>Ascending</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStateSort('Descending')}>Descending</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <Products product={product} page={page}/>
+                    <Products product={productWithSort(stateSort)} page={page}/>
                 </div>
 
                 <div className="pagination">
