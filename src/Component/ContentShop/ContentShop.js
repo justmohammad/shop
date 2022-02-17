@@ -10,9 +10,13 @@ const ContentShop = () => {
     const [product, setProduct] = useState([]);
     const [page, setPage] = useState(1);
     const [stateSort, setStateSort] = useState('Ascending');
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
+        setTimeout(() => {
+            axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
+            setLoading(false)
+        }, 1000);
     }, [])
 
     const productWithSort = (state) => {
@@ -54,13 +58,14 @@ const ContentShop = () => {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <Products product={productWithSort(stateSort)} page={page}/>
+                    <Products product={productWithSort(stateSort)} page={page} loading={loading}/>
                 </div>
 
                 <div className="pagination">
                     {
                         new Array(calculatePage(product)).fill(0).map((value, index) =>
-                            <Pagination.Item active={(index+1) === page} onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
+                            <Pagination.Item active={(index + 1) === page}
+                                             onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
                         )
                     }
                 </div>

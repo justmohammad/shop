@@ -2,9 +2,9 @@ import React from 'react';
 import {Button, Col, Placeholder} from "react-bootstrap";
 import './SingleProduct.css'
 
-const SingleProduct = ({product, page}) => {
+const SingleProduct = ({product, page,loading}) => {
 
-    if (product) {
+    if (loading === true) {
 
         const i = [1, 2, 3, 4, 5, 6]
         return (
