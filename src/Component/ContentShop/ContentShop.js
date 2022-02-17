@@ -7,7 +7,8 @@ import axios from "axios";
 
 const ContentShop = () => {
 
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState([]);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
@@ -44,13 +45,13 @@ const ContentShop = () => {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <Products product={product}/>
+                    <Products product={product} page={page}/>
                 </div>
 
                 <div className="pagination">
                     {
-                        new Array(calculatePage(product)).fill(0).map((value,index) =>
-                            <Pagination.Item>{index+1}</Pagination.Item>
+                        new Array(calculatePage(product)).fill(0).map((value, index) =>
+                            <Pagination.Item onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
                         )
                     }
                 </div>
