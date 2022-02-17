@@ -49,8 +49,8 @@ const ContentShop = () => {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item onClick={()=>setStateSort('Ascending')}>Ascending</Dropdown.Item>
-                                <Dropdown.Item onClick={()=>setStateSort('Descending')}>Descending</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStateSort('Ascending')}>Ascending</Dropdown.Item>
+                                <Dropdown.Item onClick={() => setStateSort('Descending')}>Descending</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
@@ -60,7 +60,7 @@ const ContentShop = () => {
                 <div className="pagination">
                     {
                         new Array(calculatePage(product)).fill(0).map((value, index) =>
-                            <Pagination.Item onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
+                            <Pagination.Item active={(index+1) === page} onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
                         )
                     }
                 </div>
