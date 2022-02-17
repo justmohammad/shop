@@ -13,3 +13,12 @@
 .product button {
     margin-top: 15px;
 }
+
+.placeholder {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.placeholder-group {
+    margin-top: 50px;
+}
