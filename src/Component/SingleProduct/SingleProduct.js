@@ -12,11 +12,12 @@ const SingleProduct = ({product, page, loading}) => {
         if (!value.added) {
             localStorage.setItem('cart', JSON.stringify([...arrayLocalStorage, value]))
         } else {
-            const index = JSON.parse(localStorage.getItem('cart')).findIndex((item) => {if (item.id === value.id) return true})
-            arrayLocalStorage.splice(index,1)
+            const index = JSON.parse(localStorage.getItem('cart')).findIndex((item) => {
+                if (item.id === value.id) return true
+            })
+            arrayLocalStorage.splice(index, 1)
             localStorage.setItem('cart', JSON.stringify([...arrayLocalStorage]))
         }
-
 
         axios.put(`http://localhost:4000/product/${value.id}`, {
             "id": value.id,
