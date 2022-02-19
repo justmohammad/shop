@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Container, Dropdown, Pagination} from "react-bootstrap";
-import {BsChevronDown} from "react-icons/bs";
+import {BsChevronDown, BsFillCartFill} from "react-icons/bs";
 import Products from "../Products/Products";
 import './ContentShop.css'
 import axios from "axios";
@@ -45,6 +45,10 @@ const ContentShop = () => {
                     <div className="header-content-shop">
                         <p>Showing 1–6 of 9 results</p>
                         <Dropdown>
+                            <i>
+                                <BsFillCartFill/>
+                            </i>
+                            <span>{JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0}</span>
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 {stateSort}
                                 <i>

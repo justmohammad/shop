@@ -13,9 +13,20 @@
 .content-shop .header-content-shop p {
     font-size: 22px;
 }
+.content-shop .header-content-shop .dropdown {
+    width: 1008px;
+    display: flex;
+    justify-content: end;
+}
+.content-shop .header-content-shop i {
+    margin: 10px;
+}
+
+.content-shop .header-content-shop span {
+    margin: 12px 12px 12px 0;
+}
 
 .content-shop .header-content-shop button {
-    margin-left: 800px;
     width: 255px;
     height: 60px;
     font-size: 22px;
@@ -25,6 +36,7 @@
 .content-shop .header-content-shop button:after {
     display: none;
 }
+
 
 .content-shop .header-content-shop button i {
     padding-left: 10px;
