@@ -17,7 +17,7 @@ const ContentShop = () => {
             axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
             setLoading(false)
         }, 1000);
-    }, [])
+    }, [product])
 
     const productWithSort = (state) => {
         if (state === 'Ascending') {

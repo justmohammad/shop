@@ -1,38 +1,34 @@
 import React from 'react';
-import {Button, Col, Placeholder} from "react-bootstrap";
+import {Button, Col} from "react-bootstrap";
 import './SingleProduct.css'
+import Loading from "../Loading/Loading";
+import axios from "axios";
 
-const SingleProduct = ({product, page,loading}) => {
+const SingleProduct = ({product, page, loading}) => {
+
+    const saveToCart = (value) => {
+        let arrayLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
+
+        if (!value.added) {
+            localStorage.setItem('cart', JSON.stringify([...arrayLocalStorage, value]))
+        } else {
+            const index = JSON.parse(localStorage.getItem('cart')).findIndex((item) => {if (item.id === value.id) return true})
+            arrayLocalStorage.splice(index,1)
+            localStorage.setItem('cart', JSON.stringify([...arrayLocalStorage]))
+        }
+
+
+        axios.put(`http://localhost:4000/product/${value.id}`, {
+            "id": value.id,
+            "img": value.img,
+            "title": value.title,
+            "price": value.price,
+            "added": !value.added
+        }).then(response => response.data).catch(error => console.log(error))
+    }
 
     if (loading === true) {
-
-        const i = [1, 2, 3, 4, 5, 6]
-        return (
-            <>
-                {
-                    i.map(() =>
-                        <Col md={4} aria-hidden={true} className={'placeholder-group'}>
-                            <Placeholder as="p" animation="wave">
-                                <Placeholder xs={8}/>
-                            </Placeholder>
-                            <Placeholder as="p" animation="wave">
-                                <Placeholder xs={4}/>
-                            </Placeholder>
-                            <Placeholder as="p" animation="wave">
-                                <Placeholder xs={3}/>
-                            </Placeholder>
-                            <Placeholder as="p" animation="wave">
-                                <Placeholder xs={6}/>
-                            </Placeholder>
-                            <Placeholder as="p" animation="wave">
-                                <Placeholder xs={10}/>
-                            </Placeholder>
-                        </Col>
-
-                    )
-                }
-            </>
-        )
+        return <Loading/>
     } else {
         return (
             <>
@@ -42,7 +38,8 @@ const SingleProduct = ({product, page,loading}) => {
                             <img src={value.img} alt=""/>
                             <p>{value.title}</p>
                             <div className="price">{`$${value.price}`}</div>
-                            <Button>Add To Cart</Button>
+                            <Button
+                                onClick={() => saveToCart(value)}>{value.added ? 'Remove From Cart' : 'Add To Cart'}</Button>
                         </Col>
                     )
                 }
