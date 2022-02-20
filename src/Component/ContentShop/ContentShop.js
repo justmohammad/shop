@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {Container, Dropdown, Pagination} from "react-bootstrap";
+import {Col, Container, Dropdown, Pagination} from "react-bootstrap";
 import {BsChevronDown, BsFillCartFill} from "react-icons/bs";
 import Products from "../Products/Products";
 import './ContentShop.css'
 import axios from "axios";
+import {useTranslation} from "react-i18next";
 
 const ContentShop = () => {
 
+    const {t} = useTranslation()
     const [product, setProduct] = useState([]);
     const [page, setPage] = useState(1);
-    const [stateSort, setStateSort] = useState('Ascending');
+    const [stateSort, setStateSort] = useState(t('PageContent Sort ASC'));
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -20,7 +22,7 @@ const ContentShop = () => {
     }, [product])
 
     const productWithSort = (state) => {
-        if (state === 'Ascending') {
+        if (state === t('PageContent Sort ASC')) {
             return product.sort((a, b) => a.price - b.price)
         } else {
             return product.sort((a, b) => b.price - a.price)
@@ -40,27 +42,33 @@ const ContentShop = () => {
             <Container>
                 <div className="content-shop">
                     <div className="header-shop">
-                        <h1>SHOP</h1>
+                        <h1>{t('PageContent Title')}</h1>
                     </div>
                     <div className="header-content-shop">
-                        <p>Showing 1–6 of 9 results</p>
-                        <Dropdown>
-                            <i>
-                                <BsFillCartFill/>
-                            </i>
-                            <span>{JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0}</span>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                {stateSort}
+                        <Col sm={8}>
+                            <p>{t('PageContent Showing Detail')}</p>
+                        </Col>
+                        <Col sm={4}>
+                            <Dropdown>
                                 <i>
-                                    <BsChevronDown/>
+                                    <BsFillCartFill/>
                                 </i>
-                            </Dropdown.Toggle>
+                                <span>{JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0}</span>
+                                <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                                    {stateSort}
+                                    <i>
+                                        <BsChevronDown/>
+                                    </i>
+                                </Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                                <Dropdown.Item onClick={() => setStateSort('Ascending')}>Ascending</Dropdown.Item>
-                                <Dropdown.Item onClick={() => setStateSort('Descending')}>Descending</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                                <Dropdown.Menu>
+                                    <Dropdown.Item
+                                        onClick={() => setStateSort(t('PageContent Sort ASC'))}>{t('PageContent Sort ASC')}</Dropdown.Item>
+                                    <Dropdown.Item
+                                        onClick={() => setStateSort(t('PageContent Sort DES'))}>{t('PageContent Sort DES')}</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
+                        </Col>
                     </div>
                     <Products product={productWithSort(stateSort)} page={page} loading={loading}/>
                 </div>
