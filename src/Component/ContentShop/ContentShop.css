@@ -14,7 +14,6 @@
     font-size: 22px;
 }
 .content-shop .header-content-shop .dropdown {
-    width: 1008px;
     display: flex;
     justify-content: end;
 }
@@ -30,7 +29,6 @@
     width: 255px;
     height: 60px;
     font-size: 22px;
-    background: #000CFF;
 }
 
 .content-shop .header-content-shop button:after {

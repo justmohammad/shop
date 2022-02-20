@@ -1,5 +1,9 @@
+.products a {
+    margin: 40px;
+    display: inline-block;
+}
+
 .product {
-    margin: 50px 0;
     animation-name: showProduct;
     animation-duration: 2s;
 }
