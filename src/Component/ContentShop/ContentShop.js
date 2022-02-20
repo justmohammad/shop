@@ -12,13 +12,9 @@ const ContentShop = () => {
     const [product, setProduct] = useState([]);
     const [page, setPage] = useState(1);
     const [stateSort, setStateSort] = useState(t('PageContent Sort ASC'));
-    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        setTimeout(() => {
-            axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
-            setLoading(false)
-        }, 1000);
+        axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
     }, [product])
 
     const productWithSort = (state) => {
@@ -30,10 +26,10 @@ const ContentShop = () => {
     }
 
     const calculatePage = (product) => {
-        if (product.length % 6 === 0) {
-            return product.length / 6;
+        if (product.length % 8 === 0) {
+            return product.length / 8;
         } else {
-            return product.length / 6 + 1;
+            return Math.floor((product.length) / 8 + 1);
         }
     }
 
@@ -70,7 +66,7 @@ const ContentShop = () => {
                             </Dropdown>
                         </Col>
                     </div>
-                    <Products product={productWithSort(stateSort)} page={page} loading={loading}/>
+                    <Products product={productWithSort(stateSort)} page={page}/>
                 </div>
 
                 <div className="pagination">

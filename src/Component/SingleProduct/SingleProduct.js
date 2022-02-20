@@ -1,12 +1,11 @@
 import React from 'react';
-import {Button, Col} from "react-bootstrap";
+import {Button, Card, Col} from "react-bootstrap";
 import './SingleProduct.css'
-import Loading from "../Loading/Loading";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 
-const SingleProduct = ({product, page, loading}) => {
+const SingleProduct = ({product, page}) => {
 
     const {t} = useTranslation()
 
@@ -32,27 +31,31 @@ const SingleProduct = ({product, page, loading}) => {
         }).then(response => response.data).catch(error => console.log(error))
     }
 
-    if (loading === true) {
-        return <Loading/>
-    } else {
         return (
             <>
                 {
-                    product.slice((page - 1) * 6, page * 6).map(value =>
-                        <Col md={"4"} className="product">
-                            <Link to={`/detailProduct/${value.id}`}>
-                                <img src={value.img} alt=""/>
-                            </Link>
-                            <p>{value.title}</p>
-                            <div className="price">{`$${value.price}`}</div>
-                            <Button
-                                onClick={() => saveToCart(value)}>{value.added ? t('Button Product Remove') : t('Button Product Add')}</Button>
+                    product.slice((page - 1) * 8, page * 8).map(value =>
+                        <Col md={"3"} className="product">
+                            <Card style={{width: '18rem'}}>
+                                <Link to={`/detailProduct/${value.id}`}>
+                                    <Card.Img variant="top" src={value.img}/>
+                                </Link>
+                                <Card.Body>
+                                    <Card.Title>{value.title}</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title
+                                        the card's content.
+                                    </Card.Text>
+                                    <div className="price">{`$${value.price}`}</div>
+                                    <Button variant="primary"
+                                            onClick={() => saveToCart(value)}>{value.added ? t('Button Product Remove') : t('Button Product Add')}</Button>
+                                </Card.Body>
+                            </Card>
                         </Col>
                     )
                 }
             </>
         );
-    }
 }
 
 export default SingleProduct;

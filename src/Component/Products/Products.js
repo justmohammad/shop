@@ -2,11 +2,11 @@ import React from 'react';
 import SingleProduct from "../SingleProduct/SingleProduct";
 import './Products.css'
 
-const Products = ({product, page, loading}) => {
+const Products = ({product, page}) => {
 
     return (
         <div className="products">
-            <SingleProduct product={product} page={page} loading={loading}/>
+            <SingleProduct product={product} page={page}/>
         </div>
     );
 };

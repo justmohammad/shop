@@ -14,6 +14,14 @@ const Header = () => {
     if (pathname === '/') title = t('Title Header 1');
     if (pathname.includes('detailProduct')) title = t('Title Header 2');
 
+    const changeLanguageToFarsi = () => {
+        i18n.changeLanguage('fa')
+        localStorage.setItem('lang','fa')
+    }
+    const changeLanguageToEnglish = () => {
+        i18n.changeLanguage('en')
+        localStorage.setItem('lang','en')
+    }
     return (
         <header className={"header"}>
             <Container>
@@ -25,8 +33,8 @@ const Header = () => {
                         {i18n.language === "fa" ? 'فارسی' : 'English'}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => i18n.changeLanguage('fa')}>{t('Lang Fa')}</Dropdown.Item>
-                        <Dropdown.Item onClick={() => i18n.changeLanguage('en')}>{t('Lang En')}</Dropdown.Item>
+                        <Dropdown.Item onClick={changeLanguageToFarsi}>{t('Lang Fa')}</Dropdown.Item>
+                        <Dropdown.Item onClick={changeLanguageToEnglish}>{t('Lang En')}</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Container>
