@@ -34,7 +34,7 @@ const Login = () => {
                         if (rememberRef.current.checked) {
                             localStorage.setItem('Email', emailRef.current.value);
                             localStorage.setItem('Password', passwordRef.current.value);
-                            localStorage.setItem('remember', passwordRef.current.value);
+                            localStorage.setItem('remember', rememberRef.current.value);
                         } else {
                             localStorage.clear('Email');
                             localStorage.clear('Password');

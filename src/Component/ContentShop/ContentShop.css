@@ -6,17 +6,15 @@
     font-size: 77px;
 }
 
-.content-shop .header-content-shop {
-    display: flex;
+.content-shop .header-content-shop .dropdown {
+    float: right;
 }
 
 .content-shop .header-content-shop p {
     font-size: 22px;
+    display: inline-block;
 }
-.content-shop .header-content-shop .dropdown {
-    display: flex;
-    justify-content: end;
-}
+
 .content-shop .header-content-shop i {
     margin: 10px;
 }

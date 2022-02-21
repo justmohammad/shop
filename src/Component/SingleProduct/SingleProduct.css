@@ -15,9 +15,12 @@
 .product p {
     margin: 26px 0 17px;
 }
+.product .card-title {
+    text-align: left;
+}
 
-.product img {
-    cursor: zoom-in;
+.product .card-title i {
+    float: right;
 }
 
 .product .price {

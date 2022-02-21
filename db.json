@@ -12,7 +12,7 @@
       "img": "images/image2.png",
       "title": "Dipped Tripod Stool",
       "price": 36,
-      "added": true
+      "added": false
     },
     {
       "id": 3,
@@ -33,56 +33,64 @@
       "img": "images/image5.png",
       "title": "Dipped Tripod Stool",
       "price": 39,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 6,
       "img": "images/image6.png",
       "title": "Dipped Tripod Stool",
       "price": 40,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 7,
       "img": "images/image5.png",
       "title": "Dipped Tripod Stool",
       "price": 41,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 8,
       "img": "images/image3.png",
       "title": "Dipped Tripod Stool",
       "price": 42,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 9,
       "img": "images/image6.png",
       "title": "Dipped Tripod Stool",
       "price": 43,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 10,
       "img": "images/image2.png",
       "title": "Dipped Tripod Stool",
       "price": 44,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 11,
       "img": "images/image1.png",
       "title": "Dipped Tripod Stool",
       "price": 45,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 12,
       "img": "images/image4.png",
       "title": "Dipped Tripod Stool",
       "price": 46,
-      "added": false
+      "added": false,
+      "like": false
     }
   ],
   "users": [

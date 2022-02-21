@@ -29,9 +29,9 @@ const App = () => {
                             <Route path={'/'} exact>
                                 <PageShop/>
                             </Route>
-                            <Route>
+                            {/*<Route>
                                 <Page404/>
-                            </Route>
+                            </Route>*/}
                         </Layout>
                     </Switch>
                 </BrowserRouter>

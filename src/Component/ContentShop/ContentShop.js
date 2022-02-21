@@ -42,10 +42,7 @@ const ContentShop = () => {
                             <h1>{t('PageContent Title')}</h1>
                         </div>
                         <div className="header-content-shop">
-                            <Col sm={8}>
                                 <p>{t('PageContent Showing Detail')}</p>
-                            </Col>
-                            <Col sm={4}>
                                 <Dropdown>
                                     <i>
                                         <BsFillCartFill/>
@@ -65,7 +62,6 @@ const ContentShop = () => {
                                             onClick={() => setStateSort('DES')}>{t('PageContent Sort DES')}</Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
-                            </Col>
                         </div>
                         <Products product={productWithSort(stateSort)} page={page}/>
                     </div>
