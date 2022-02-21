@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Container} from "react-bootstrap";
-import './Blog.css'
 import {useTranslation} from "react-i18next";
+import './Blog.css'
 
 const Blog = () => {
 

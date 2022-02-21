@@ -12,7 +12,7 @@
       "img": "images/image2.png",
       "title": "Dipped Tripod Stool",
       "price": 36,
-      "added": false
+      "added": true
     },
     {
       "id": 3,
@@ -83,6 +83,33 @@
       "title": "Dipped Tripod Stool",
       "price": 46,
       "added": false
+    }
+  ],
+  "users": [
+    {
+      "email": "jdcjdn@hd.dncj",
+      "password": "dnjncjnSD5",
+      "id": 1
+    },
+    {
+      "email": "jdcjdn@hd.dncj",
+      "password": "dnjncjnSD5",
+      "id": 2
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "Mohammad403",
+      "id": 3
+    },
+    {
+      "email": "dcmdmc@jdcd.jdcjd",
+      "password": "cmdmkcmdDS454",
+      "id": 4
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "Mohammad403",
+      "id": 5
     }
   ]
 }

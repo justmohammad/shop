@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container} from "react-bootstrap";
 import SocialMedia from "../SocialMedia/SocialMedia";
-import './Footer.css';
 import {useTranslation} from "react-i18next";
+import './Footer.css';
 
 const Footer = () => {
 

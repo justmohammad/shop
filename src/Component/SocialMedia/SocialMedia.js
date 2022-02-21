@@ -1,6 +1,6 @@
 import React from 'react';
-import './SocialMedia.css'
 import {useTranslation} from "react-i18next";
+import './SocialMedia.css'
 
 const SocialMedia = () => {
 

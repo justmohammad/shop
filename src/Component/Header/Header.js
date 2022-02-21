@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container, Dropdown} from "react-bootstrap";
-import './Header.css'
 import {useLocation} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import './Header.css'
 
 const Header = () => {
 
@@ -33,8 +33,8 @@ const Header = () => {
                         {i18n.language === "fa" ? 'فارسی' : 'English'}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={changeLanguageToFarsi}>{t('Lang Fa')}</Dropdown.Item>
-                        <Dropdown.Item onClick={changeLanguageToEnglish}>{t('Lang En')}</Dropdown.Item>
+                        <Dropdown.Item onClick={() => changeLanguageToFarsi()}>{t('Lang Fa')}</Dropdown.Item>
+                        <Dropdown.Item onClick={() => changeLanguageToEnglish()}>{t('Lang En')}</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Container>

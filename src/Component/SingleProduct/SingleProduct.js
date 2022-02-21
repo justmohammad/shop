@@ -1,9 +1,9 @@
 import React from 'react';
 import {Button, Card, Col} from "react-bootstrap";
-import './SingleProduct.css'
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
+import './SingleProduct.css'
 
 const SingleProduct = ({product, page}) => {
 
