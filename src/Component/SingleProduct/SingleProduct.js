@@ -4,7 +4,7 @@ import axios from "axios";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import './SingleProduct.css'
-import {BsSuitHeart} from "react-icons/bs";
+import {BsSuitHeart, BsSuitHeartFill} from "react-icons/bs";
 
 const SingleProduct = ({product, page}) => {
 
@@ -28,7 +28,19 @@ const SingleProduct = ({product, page}) => {
             "img": value.img,
             "title": value.title,
             "price": value.price,
-            "added": !value.added
+            "added": !value.added,
+            "like": value.like
+        }).then(response => response.data).catch(error => console.log(error))
+    }
+
+    const setLike = (value) => {
+        axios.put(`http://localhost:4000/product/${value.id}`, {
+            "id": value.id,
+            "img": value.img,
+            "title": value.title,
+            "price": value.price,
+            "added": value.added,
+            "like": !value.like
         }).then(response => response.data).catch(error => console.log(error))
     }
 
@@ -43,9 +55,11 @@ const SingleProduct = ({product, page}) => {
                             </Link>
                             <Card.Body>
                                 <Card.Title>{value.title}
-                                    <i>
-                                        {value.like }
-                                    </i>
+                                    <button onClick={() => setLike(value)}>
+                                        <i>
+                                            {value.like ? <BsSuitHeartFill/> : <BsSuitHeart/>}
+                                        </i>
+                                    </button>
                                 </Card.Title>
                                 <Card.Text>
                                     Some quick example text to build on the card title

@@ -12,15 +12,41 @@
     }
 }
 
+@keyframes like {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .product p {
     margin: 26px 0 17px;
 }
+
 .product .card-title {
     text-align: left;
 }
 
 .product .card-title i {
     float: right;
+}
+
+.product .card-title i svg {
+    animation-name: like;
+    animation-duration: 250ms;
+    color: #c40303;
+}
+
+.product .card-title button {
+    float: right;
+    margin: 0;
+    background: 0;
+    border: 0;
 }
 
 .product .price {

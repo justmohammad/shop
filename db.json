@@ -5,28 +5,32 @@
       "img": "images/image1.png",
       "title": "Dipped Tripod Stool",
       "price": 35,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 2,
       "img": "images/image2.png",
       "title": "Dipped Tripod Stool",
       "price": 36,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 3,
       "img": "images/image3.png",
       "title": "Dipped Tripod Stool",
       "price": 37,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 4,
       "img": "images/image4.png",
       "title": "Dipped Tripod Stool",
       "price": 38,
-      "added": false
+      "added": false,
+      "like": false
     },
     {
       "id": 5,
@@ -118,6 +122,18 @@
       "email": "justmohammad403@gmail.com",
       "password": "Mohammad403",
       "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "email": "ckdkvdjvj",
+      "text": "mkvmfmkvmkfm",
+      "id": 1
+    },
+    {
+      "email": "kmvfkmvkmkfv",
+      "text": "mkvmkmkvmkfv",
+      "id": 2
     }
   ]
 }
