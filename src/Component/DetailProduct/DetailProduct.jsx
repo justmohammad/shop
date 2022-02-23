@@ -2,10 +2,11 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
 import {Button, Card, Form} from "react-bootstrap";
-import './DetailProduct.css';
+import useStyles from "./StyleDetailProduct";
 
 const DetailProduct = () => {
 
+    const classes = useStyles();
     const {id} = useParams();
     const emailRef = useRef();
     const commentRef = useRef();
@@ -33,7 +34,7 @@ const DetailProduct = () => {
 
     return (
         <div style={{height: '500px'}}>
-            <Card className={'product'} style={{width: '18rem', display: "inline-block"}}>
+            <Card className={classes.product} style={{width: '18rem', display: "inline-block"}}>
                 <Card.Img variant="top" src={`/${data.img}`}/>
                 <Card.Body>
                     <Card.Title>{data.title}</Card.Title>
@@ -41,10 +42,10 @@ const DetailProduct = () => {
                         Some quick example text to build on the card title
                         the card's content.
                     </Card.Text>
-                    <div className="price">{`$${data.price}`}</div>
+                    <div className={classes.price}>{`$${data.price}`}</div>
                 </Card.Body>
             </Card>
-            <div className="comment">
+            <div className={classes.comment}>
                 <Form>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                         <Form.Label>Email address</Form.Label>
@@ -61,13 +62,13 @@ const DetailProduct = () => {
                     </Button>
                 </Form>
             </div>
-            <div className="comment-list">
+            <div className={classes.commentList}>
                 {
                     !comments.length ? <div>No comment yet</div> :
                     comments.map(value =>
-                        <div className={"single-comment"}>
-                            <div className="email-comment">{value.email}</div>
-                            <div className="text-comment">{value.text}</div>
+                        <div className={classes.singleComment}>
+                            <div className={classes.emailComment}>{value.email}</div>
+                            <div className={classes.textComment}>{value.text}</div>
                         </div>
                     )
                 }

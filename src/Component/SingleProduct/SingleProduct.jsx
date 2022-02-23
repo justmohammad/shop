@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Button, Card, Col} from "react-bootstrap";
 import axios from "axios";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
-import './SingleProduct.css'
 import {BsSuitHeart, BsSuitHeartFill} from "react-icons/bs";
+import ThemeContext from "../../Contexts/ThemeContext";
+import useStyles from "./StyleSingleProduct";
 
 const SingleProduct = ({product, page}) => {
 
     const {t} = useTranslation()
-
+    const themeValues = useContext(ThemeContext)
+    const classes = useStyles(themeValues.theme)
     const saveToCart = (value) => {
         let arrayLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -48,13 +50,13 @@ const SingleProduct = ({product, page}) => {
         <>
             {
                 product.slice((page - 1) * 8, page * 8).map(value =>
-                    <Col md={"3"} className="product">
+                    <Col md={"3"} className={classes.product}>
                         <Card style={{width: '18rem'}}>
                             <Link to={`/detailProduct/${value.id}`}>
                                 <Card.Img variant="top" src={value.img}/>
                             </Link>
                             <Card.Body>
-                                <Card.Title>{value.title}
+                                <Card.Title className={classes.cardTitle}>{value.title}
                                     <button onClick={() => setLike(value)}>
                                         <i>
                                             {value.like ? <BsSuitHeartFill/> : <BsSuitHeart/>}
@@ -65,8 +67,8 @@ const SingleProduct = ({product, page}) => {
                                     Some quick example text to build on the card title
                                     the card's content.
                                 </Card.Text>
-                                <div className="price">{`$${value.price}`}</div>
-                                <Button variant="primary"
+                                <div className={classes.price}>{`$${value.price}`}</div>
+                                <Button variant={classes.buttonSell}
                                         onClick={() => saveToCart(value)}>{value.added ? t('Button Product Remove') : t('Button Product Add')}</Button>
                             </Card.Body>
                         </Card>

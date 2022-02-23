@@ -1,9 +1,0 @@
-.products {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    height: 1115px;
-    justify-content: center;
-    margin-top: 60px;
-    align-items: center;
-}

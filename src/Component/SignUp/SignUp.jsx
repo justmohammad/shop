@@ -2,10 +2,11 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import './SignUp.css';
+import useStyles from "./StyleSignUp";
 
 const SignUp = () => {
 
+    const classes = useStyles();
     const emailRef = useRef();
     const passwordRef = useRef();
     const rememberRef = useRef();
@@ -72,7 +73,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className={"sign-up"}>
+        <div className={classes.signUp}>
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -99,7 +100,7 @@ const SignUp = () => {
                     Submit
                 </Button>
             </Form>
-            <p className={'account'}>Do you have an account? <Link to={"/login"}>Login</Link></p>
+            <p className={classes.account}>Do you have an account? <Link to={"/login"}>Login</Link></p>
         </div>
     );
 };

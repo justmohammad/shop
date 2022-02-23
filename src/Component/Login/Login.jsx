@@ -2,10 +2,11 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Alert, Button, Form} from "react-bootstrap";
 import axios from "axios";
 import {Link} from "react-router-dom";
-import './Login.css';
+import useStyles from "./StyleLogin";
 
 const Login = () => {
 
+    const classes = useStyles()
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const rememberRef = useRef(null);
@@ -50,7 +51,7 @@ const Login = () => {
     }
 
     return (
-        <div className={"login"}>
+        <div className={classes.login}>
             <Form>
                 {errorValidateLogin && <Alert variant={"danger"} dismissible>Wrong password or email</Alert>}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -76,7 +77,7 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
-            <p className={'account'}>Have you registered? <Link to={"/signUp"}>Sign Up</Link></p>
+            <p className={classes.account}>Have you registered? <Link to={"/signUp"}>Sign Up</Link></p>
         </div>
     );
 };

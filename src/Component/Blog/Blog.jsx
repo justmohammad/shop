@@ -1,14 +1,15 @@
 import React from 'react';
 import {Button, Container} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
-import './Blog.css'
+import useStyles from "./StyleBlog";
 
 const Blog = () => {
 
+    const classes = useStyles()
     const {t} = useTranslation()
     return (
         <section>
-            <div className="blog">
+            <div className={classes.blog}>
                 <Container>
                     <h2>{t('Blog Title')}</h2>
                     <p>{t('Blog Description')}</p>
