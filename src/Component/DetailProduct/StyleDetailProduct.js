@@ -22,6 +22,13 @@ const useStyles = createUseStyles({
     },
     "textComment": {
         padding: "5px 10px"
+    },
+    "iiz__hint": {
+        '@global': {
+            span: {
+                display: "none"
+            }
+        }
     }
 })
 

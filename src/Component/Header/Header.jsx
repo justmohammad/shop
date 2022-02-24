@@ -26,6 +26,16 @@ const Header = () => {
         localStorage.setItem('lang', 'en')
     }
 
+    const changeThemeToBlue = () => {
+        themeValues.setActiveTheme('blue')
+        localStorage.setItem('theme','blue')
+    }
+
+    const changeThemeToRed = () => {
+        themeValues.setActiveTheme('red')
+        localStorage.setItem('theme','red')
+    }
+
     return (
         <header className={classes.header}>
             <Container>
@@ -43,11 +53,11 @@ const Header = () => {
                 </Dropdown>
                 <Dropdown>
                     <Dropdown.Toggle variant="info" id="dropdown-basic">
-                        blue
+                        {localStorage.getItem('theme')}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                        <Dropdown.Item onClick={() => themeValues.setActiveTheme('blue')}>blue</Dropdown.Item>
-                        <Dropdown.Item onClick={() => themeValues.setActiveTheme('red')}>red</Dropdown.Item>
+                        <Dropdown.Item onClick={changeThemeToBlue}>blue</Dropdown.Item>
+                        <Dropdown.Item onClick={changeThemeToRed}>red</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </Container>

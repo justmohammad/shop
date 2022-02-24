@@ -3,7 +3,7 @@ import useStyles from "./stylePage404";
 
 const Page404 = () => {
 
-    const classes = useStyles
+    const classes = useStyles()
     return (
         <div className={classes['page404']}>
             404

@@ -13,9 +13,9 @@ import useStyles from "./StyleApp";
 
 const App = () => {
 
-    const classes = useStyles()
+    useStyles()
 
-    const [activeTheme, setActiveTheme] = useState('blue');
+    const [activeTheme, setActiveTheme] = useState(localStorage.getItem('theme'));
 
     return (
         <ThemeContext.Provider value={{
@@ -23,31 +23,29 @@ const App = () => {
             setActiveTheme
         }
         }>
-            <div className={classes}>
-                <Suspense fallback={null}>
-                    <BrowserRouter>
-                        <Switch>
-                            <Route path={'/login'}>
-                                <Login/>
+            <Suspense fallback={null}>
+                <BrowserRouter>
+                    <Switch>
+                        <Route path={'/login'}>
+                            <Login/>
+                        </Route>
+                        <Route path={'/signUp'}>
+                            <SignUp/>
+                        </Route>
+                        <Layout>
+                            <Route path={'/detailProduct/:id'}>
+                                <DetailProduct/>
                             </Route>
-                            <Route path={'/signUp'}>
-                                <SignUp/>
+                            <Route path={'/'} exact>
+                                <PageShop/>
                             </Route>
-                            <Layout>
-                                <Route path={'/detailProduct/:id'}>
-                                    <DetailProduct/>
-                                </Route>
-                                <Route path={'/'} exact>
-                                    <PageShop/>
-                                </Route>
-                                {/*<Route>
+                            {/*<Route>
                                 <Page404/>
                             </Route>*/}
-                            </Layout>
-                        </Switch>
-                    </BrowserRouter>
-                </Suspense>
-            </div>
+                        </Layout>
+                    </Switch>
+                </BrowserRouter>
+            </Suspense>
         </ThemeContext.Provider>
     );
 }

@@ -2,7 +2,6 @@ import {createUseStyles} from "react-jss";
 
 const useStyles = createUseStyles({
     '@global': {
-
         "html, body, div, span, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\nabbr, address, cite, code,\ndel, dfn, em, img, ins, kbd, q, samp,\nsmall, strong, sub, sup, var,\nb, i,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section, summary,\ntime, mark, audio, video": {
             margin: "0",
             padding: "0",
@@ -12,7 +11,7 @@ const useStyles = createUseStyles({
             verticalAlign: "baseline",
             background: "transparent"
         },
-        body: {lineHeight: 1},
+        body: {lineHeight: 1,fontFamily: 'Roboto'},
         "article,aside,details,figcaption,figure,\nfooter,header,hgroup,menu,nav,section": {
             display: "block"
         },
@@ -27,7 +26,7 @@ const useStyles = createUseStyles({
             fontSize: "100%",
             verticalAlign: "baseline",
             background: "transparent",
-            textDecoration: "none"
+            textDecoration: "none",
         },
         ins: {backgroundColor: "#ff9", color: "#000", textDecoration: "none"},
         mark: {

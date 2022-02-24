@@ -1,8 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useParams} from "react-router-dom";
 import axios from "axios";
+import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import {Button, Card, Form} from "react-bootstrap";
 import useStyles from "./StyleDetailProduct";
+import InnerImageZoom from "react-inner-image-zoom";
 
 const DetailProduct = () => {
 
@@ -34,15 +36,20 @@ const DetailProduct = () => {
 
     return (
         <div style={{height: '500px'}}>
-            <Card className={classes.product} style={{width: '18rem', display: "inline-block"}}>
-                <Card.Img variant="top" src={`/${data.img}`}/>
+            <Card style={{width: '18rem', display: "inline-block"}}>
+                <InnerImageZoom className={classes.iiz__hint}
+                    src={`/${data.img}`}
+                    zoomSrc={`/${data.img}`}
+                    zoomType="hover"
+                    zoomPreload={true}
+                />
                 <Card.Body>
                     <Card.Title>{data.title}</Card.Title>
                     <Card.Text>
                         Some quick example text to build on the card title
                         the card's content.
                     </Card.Text>
-                    <div className={classes.price}>{`$${data.price}`}</div>
+                    <div>{`$${data.price}`}</div>
                 </Card.Body>
             </Card>
             <div className={classes.comment}>
