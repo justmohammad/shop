@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {Button, Card, Col} from "react-bootstrap";
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -6,8 +6,16 @@ import {useTranslation} from "react-i18next";
 import {BsSuitHeart, BsSuitHeartFill} from "react-icons/bs";
 import ThemeContext from "../../Contexts/ThemeContext";
 import useStyles from "./StyleSingleProduct";
+import 'aos/dist/aos.css'
+import AOS from 'aos'
 
 const SingleProduct = ({product, page}) => {
+
+    useEffect(() => {
+        AOS.init({
+            duration : 1000
+        });
+    }, []);
 
     const {t} = useTranslation()
     const themeValues = useContext(ThemeContext)
@@ -50,7 +58,7 @@ const SingleProduct = ({product, page}) => {
         <>
             {
                 product.slice((page - 1) * 8, page * 8).map(value =>
-                    <Col md={"3"} className={classes.product}>
+                    <Col md={"3"} className={classes.product} data-aos="fade-up">
                         <Card style={{width: '18rem'}}>
                             <Link to={`/detailProduct/${value.id}`}>
                                 <Card.Img variant="top" src={value.img}/>

@@ -2,8 +2,6 @@ import {createUseStyles} from "react-jss";
 
 const useStyles = createUseStyles({
     "product": {
-        animationName: "$showProduct",
-        animationDuration: "2s",
         '@global': {
             p: {
                 margin: "26px 0 17px"
@@ -12,10 +10,6 @@ const useStyles = createUseStyles({
                 marginTop: "15px"
             }
         }
-    },
-    "@keyframes showProduct": {
-        "0%": {opacity: 0},
-        "100%": {opacity: 1}
     },
     "@keyframes like": {
         "0%": {transform: "scale(1)"},

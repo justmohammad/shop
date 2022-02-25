@@ -32,7 +32,7 @@ const DetailProduct = () => {
 
     useEffect(() => {
         axios.get(`http://localhost:4000/comments`).then(response => setComments(response.data)).catch(error => console.log(error))
-    }, [comments])
+    }, [])
 
     return (
         <div style={{height: '500px'}}>

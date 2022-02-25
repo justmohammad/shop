@@ -6,7 +6,7 @@
       "title": "Dipped Tripod Stool",
       "price": 35,
       "added": false,
-      "like": false
+      "like": true
     },
     {
       "id": 2,
@@ -14,7 +14,7 @@
       "title": "Dipped Tripod Stool",
       "price": 36,
       "added": false,
-      "like": true
+      "like": false
     },
     {
       "id": 3,
@@ -22,7 +22,7 @@
       "title": "Dipped Tripod Stool",
       "price": 37,
       "added": false,
-      "like": true
+      "like": false
     },
     {
       "id": 4,
@@ -134,6 +134,31 @@
       "email": "kmvfkmvkmkfv",
       "text": "mkvmkmkvmkfv",
       "id": 2
+    },
+    {
+      "email": null,
+      "text": null,
+      "id": 3
+    },
+    {
+      "email": null,
+      "text": null,
+      "id": 4
+    },
+    {
+      "email": null,
+      "text": null,
+      "id": 5
+    },
+    {
+      "email": null,
+      "text": null,
+      "id": 6
+    },
+    {
+      "email": null,
+      "text": null,
+      "id": 7
     }
   ]
 }

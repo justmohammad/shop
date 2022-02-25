@@ -2,13 +2,18 @@ import {createUseStyles} from "react-jss";
 
 const useStyles = createUseStyles({
     header: {
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        textAlign: 'center',
-        height: '90px',
-        color: '#fff',
-        background: (props) => props.background
+        background: (props) => [props.background, "!important"]
+    },
+    "navColorWhit": {
+        composes: "me-auto my-2 my-lg-0",
+        '@global': {
+            a: {
+                color: '#fff !important'
+            }
+        }
+    },
+    "dropdown": {
+        marginRight: "7px"
     }
 })
 

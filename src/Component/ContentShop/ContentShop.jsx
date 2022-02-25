@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {Container, Dropdown, Pagination, Row} from "react-bootstrap";
 import {BsChevronDown, BsFillCartFill} from "react-icons/bs";
 import Products from "../Products/Products";
@@ -18,23 +18,23 @@ const ContentShop = () => {
 
     useEffect(() => {
         axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
-    }, [product])
+    }, [])
 
-    const productWithSort = (state) => {
+    const productWithSort = useCallback((state) => {
         if (state === 'ASC') {
             return product.sort((a, b) => a.price - b.price)
         } else {
             return product.sort((a, b) => b.price - a.price)
         }
-    }
+    },[product])
 
-    const calculatePage = (product) => {
+    const calculatePage = useMemo(() => {
         if (product.length % 8 === 0) {
             return product.length / 8;
         } else {
             return Math.floor((product.length) / 8 + 1);
         }
-    }
+    },[product])
 
     return (
         <section>
@@ -71,8 +71,8 @@ const ContentShop = () => {
 
                     <div className={classes.pagination}>
                         {
-                            new Array(calculatePage(product)).fill(0).map((value, index) =>
-                                <Pagination.Item classname={classes.pageItem} active={(index + 1) === page}
+                            new Array(calculatePage).fill(0).map((value, index) =>
+                                <Pagination.Item active={(index + 1) === page}
                                                  onClick={() => setPage(index + 1)}>{index + 1}</Pagination.Item>
                             )
                         }
