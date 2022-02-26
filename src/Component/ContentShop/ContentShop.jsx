@@ -17,8 +17,9 @@ const ContentShop = () => {
     const [stateSort, setStateSort] = useState('ASC');
 
     useEffect(() => {
-        axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
+        axios.get('https://run.mocky.io/v3/d9a3a43c-67b0-4a60-bc1e-c77b535d680b').then(response => setProduct(response.data.product))
     }, [])
+    console.log(product)
 
     const productWithSort = useCallback((state) => {
         if (state === 'ASC') {
