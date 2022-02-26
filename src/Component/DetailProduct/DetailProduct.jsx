@@ -18,7 +18,7 @@ const DetailProduct = () => {
     const [comments, setComments] = useState([]);
 
     const submitComment = () => {
-        axios.post('https://run.mocky.io/v3/9964fcb0-bfd2-4b7c-887c-a1902e05bf39/comments', {
+        axios.post('http://localhost:4000/comments', {
             email: email,
             text: text
         }).then()
@@ -27,14 +27,13 @@ const DetailProduct = () => {
     }
 
     useEffect(() => {
-        axios.get(`https://run.mocky.io/v3/d9a3a43c-67b0-4a60-bc1e-c77b535d680b`).then(response => {
-            setData(response.data.product)
-        }
-        ).catch(error => console.log(error))
+        axios.get(`http://localhost:4000/product/${id}`).then(response => setData(response.data)).catch(error => console.log(error))
     }, [])
+
     useEffect(() => {
-        axios.get(`https://run.mocky.io/v3/dcf3be0b-ffcc-422a-8e2e-15b50e035d1c`).then(response => setComments(response.data.comments)).catch(error => console.log(error))
+        axios.get(`http://localhost:4000/comments`).then(response => setComments(response.data)).catch(error => console.log(error))
     }, [])
+
     return (
         <div style={{height: '500px'}}>
             <Card style={{width: '18rem', display: "inline-block"}}>
