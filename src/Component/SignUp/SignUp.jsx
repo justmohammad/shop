@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -7,9 +7,6 @@ import useStyles from "./StyleSignUp";
 const SignUp = () => {
 
     const classes = useStyles();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const rememberRef = useRef();
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [errorValidateEmail, setErrorValidateEmail] = useState(null);
@@ -19,10 +16,6 @@ const SignUp = () => {
         validateEmail()
         validatePassword()
     }, [email, password])
-
-    useEffect(() => {
-        window.onload = () => emailRef.current.focus()
-    }, [])
 
     const validateEmail = () => {
         const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -60,24 +53,18 @@ const SignUp = () => {
                 password: password
             }).then(response => response).catch(error => error)
 
-            if (rememberRef.current.checked) {
-                localStorage.setItem('Email', emailRef.current.value);
-                localStorage.setItem('Password', passwordRef.current.value);
-                localStorage.setItem('remember', rememberRef.current.value);
-            } else {
-                localStorage.clear('Email');
-                localStorage.clear('Password');
-            }
+                localStorage.setItem('Email', email);
+                localStorage.setItem('Password', password);
+                localStorage.setItem('theme', 'blue');
         }
-
     }
 
     return (
         <div className={classes.signUp}>
-            <Form>
+            <Form onSubmit={validationForm}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" className={errorValidateEmail && "is-invalid"} ref={emailRef}
+                    <Form.Control type="email" className={errorValidateEmail && "is-invalid"}
                                   onChange={(event) => setEmail(event.target.value)}
                                   placeholder="Enter email"/>
                     {errorValidateEmail && <p className={"error"}>{errorValidateEmail}</p>}
@@ -88,15 +75,12 @@ const SignUp = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" className={errorValidatePassword && "is-invalid"} ref={passwordRef}
+                    <Form.Control type="password" className={errorValidatePassword && "is-invalid"}
                                   onChange={event => setPassword(event.target.value)}
                                   placeholder="Password"/>
                     {errorValidatePassword && <p className={"error"}>{errorValidatePassword}</p>}
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" ref={rememberRef}/>
-                </Form.Group>
-                <Button className={"form-control"} variant="primary" onClick={validationForm} type={"submit"}>
+                <Button className={"form-control"} variant="primary" type={"submit"} >
                     Submit
                 </Button>
             </Form>

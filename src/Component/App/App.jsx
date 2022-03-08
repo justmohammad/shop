@@ -10,14 +10,11 @@ import Login from "../Login/Login";
 import ThemeContext from "../../Contexts/ThemeContext";
 import themeConfig from '../../ThemeConfig/themeConfig';
 import useStyles from "./StyleApp";
-import {render} from "react-dom";
 
 const App = () => {
 
-    const isLogin = () => !!localStorage.getItem('Password');
-
     useStyles()
-    const [activeTheme, setActiveTheme] = useState(localStorage.getItem('theme'));
+    const [activeTheme, setActiveTheme] = useState('blue');
 
     return (
         <ThemeContext.Provider value={{
@@ -27,27 +24,43 @@ const App = () => {
         }>
             <Suspense fallback={null}>
                 <BrowserRouter>
-                    <Route exact path={"/login"}>
-                        <Login/>
-                    </Route>
-                    <Route path="/">
-                        {!isLogin() ? <Redirect to={"/login"}/> : <Route render={() => {
-                            return <Switch>
-                                <Layout>
-                                    <Route path={'/detailProduct/:id'}>
-                                        <DetailProduct/>
-                                    </Route>
-                                    <Route path={'/'} exact>
-                                        <PageShop/>
-                                    </Route>
-                                </Layout>
-                            </Switch>
-                        }}/>}
-                    </Route>
+                    <Switch>
+                        <PublicRoute path="/login" component={Login}/>
+                        <PublicRoute path="/Signup" component={SignUp}/>
+                        <PrivateRoute path={"/"} render={() =>
+                            <Layout>
+                                <Switch>
+                                    <Route exact path={"/"} component={PageShop}/>
+                                    <Route exact path={"/detailProduct/:id"} component={DetailProduct}/>
+                                    <Route component={Page404}/>
+                                </Switch>
+                            </Layout>
+                        }/>
+                    </Switch>
                 </BrowserRouter>
             </Suspense>
         </ThemeContext.Provider>
     );
+}
+
+const isLogin = () => !!localStorage.getItem('Password');
+
+const PublicRoute = ({component, ...props}) => {
+    return <Route {...props} render={(props) => {
+        if (isLogin())
+            return <Redirect to={"/"}/>
+        else {
+            return React.createElement(component, props);
+        }
+    }}/>
+};
+
+const PrivateRoute = ({render, ...props}) => {
+    return <Route {...props} render={(props) => {
+        if (isLogin())
+            return render(props);
+        else return <Redirect to={"/login"}/>
+    }}/>
 }
 
 export default App;

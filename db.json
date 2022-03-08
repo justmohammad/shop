@@ -6,22 +6,22 @@
       "title": "Dipped Tripod Stool",
       "price": 35,
       "added": false,
-      "like": true
+      "like": false
     },
     {
       "id": 2,
       "img": "images/image2.png",
       "title": "Dipped Tripod Stool",
       "price": 36,
-      "added": false,
-      "like": false
+      "added": true,
+      "like": true
     },
     {
       "id": 3,
       "img": "images/image3.png",
       "title": "Dipped Tripod Stool",
       "price": 37,
-      "added": false,
+      "added": true,
       "like": false
     },
     {
@@ -29,7 +29,7 @@
       "img": "images/image4.png",
       "title": "Dipped Tripod Stool",
       "price": 38,
-      "added": false,
+      "added": true,
       "like": false
     },
     {
@@ -61,7 +61,7 @@
       "img": "images/image3.png",
       "title": "Dipped Tripod Stool",
       "price": 42,
-      "added": false,
+      "added": true,
       "like": false
     },
     {
@@ -122,6 +122,96 @@
       "email": "justmohammad403@gmail.com",
       "password": "Mohammad403",
       "id": 5
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 6
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 7
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 8
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 9
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 10
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 11
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 12
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 13
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 14
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 15
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 16
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 17
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 18
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 19
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "kmkmmdscvsdFDDF15",
+      "id": 20
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "cmkmdcdSCMDK155",
+      "id": 21
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "GHj22xsxnjn",
+      "id": 22
+    },
+    {
+      "email": "justmohammad403@gmail.com",
+      "password": "Ajhc1215",
+      "id": 23
     }
   ],
   "comments": [
