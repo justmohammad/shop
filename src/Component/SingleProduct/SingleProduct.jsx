@@ -8,13 +8,15 @@ import ThemeContext from "../../Contexts/ThemeContext";
 import useStyles from "./StyleSingleProduct";
 import 'aos/dist/aos.css'
 import AOS from 'aos'
-import LikeReducer from "../../Reducer/LikeReducer";
+import LikeReducer from "../../Reducers/LikeReducer";
+import CartContext from "../../Contexts/CartContext";
 
 const SingleProduct = ({product, page}) => {
 
     const {t} = useTranslation()
     const {theme} = useContext(ThemeContext)
-    const [state, dispatchLike] = useReducer(LikeReducer, {likes: []})
+    const {carts,dispatchCart} = useContext(CartContext)
+    const [state, dispatchLike] = useReducer(LikeReducer, {likes: JSON.parse(localStorage.getItem('likes'))|| []})
     const classes = useStyles(theme);
 
     useEffect(() => {
@@ -24,26 +26,17 @@ const SingleProduct = ({product, page}) => {
     }, []);
 
     const saveToCart = (value) => {
-        let arrayLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
-
-        if (!value.added) {
-            localStorage.setItem('cart', JSON.stringify([...arrayLocalStorage, value]))
+        if (!carts.includes(value.id)) {
+        dispatchCart({
+            type: 'ADD_TO_CART',
+            id: value.id
+        })
         } else {
-            const index = JSON.parse(localStorage.getItem('cart')).findIndex((item) => {
-                if (item.id === value.id) return true
+            dispatchCart({
+                type: 'REMOVE_FROM_CART',
+                id: value.id
             })
-            arrayLocalStorage.splice(index, 1)
-            localStorage.setItem('cart', JSON.stringify([...arrayLocalStorage]))
         }
-
-        axios.put(`http://localhost:4000/product/${value.id}`, {
-            "id": value.id,
-            "img": value.img,
-            "title": value.title,
-            "price": value.price,
-            "added": !value.added,
-            "like": value.like
-        }).then(response => response.data).catch(error => console.log(error))
     }
 
     const setLike = (value) => {
@@ -83,7 +76,7 @@ const SingleProduct = ({product, page}) => {
                                 </Card.Text>
                                 <div className={classes.price}>{`$${value.price}`}</div>
                                 <Button variant={classes.buttonSell}
-                                        onClick={() => saveToCart(value)}>{value.added ? t('Button Product Remove') : t('Button Product Add')}</Button>
+                                        onClick={() => saveToCart(value)}>{carts.includes(value.id) ? t('Button Product Remove') : t('Button Product Add')}</Button>
                             </Card.Body>
                         </Card>
                     </Col>

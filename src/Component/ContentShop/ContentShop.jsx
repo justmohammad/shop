@@ -6,12 +6,14 @@ import axios from "axios";
 import {useTranslation} from "react-i18next";
 import ThemeContext from "../../Contexts/ThemeContext";
 import useStyles from "./styleContentShop";
+import CartContext from "../../Contexts/CartContext";
 
 const ContentShop = () => {
 
     const {t} = useTranslation();
-    const themeValues = useContext(ThemeContext)
-    const classes = useStyles(themeValues.theme);
+    const {theme} = useContext(ThemeContext);
+    const {carts} = useContext(CartContext);
+    const classes = useStyles(theme);
     const [product, setProduct] = useState([]);
     const [page, setPage] = useState(1);
     const [stateSort, setStateSort] = useState('ASC');
@@ -52,7 +54,7 @@ const ContentShop = () => {
                                     <i>
                                         <BsFillCartFill/>
                                     </i>
-                                    <span>{JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')).length : 0}</span>
+                                    <span>{carts.length}</span>
                                     <Dropdown.Toggle variant={"primary"} id="dropdown-basic">
                                         {stateSort === 'ASC' ? t('PageContent Sort ASC') : t('PageContent Sort DES')}
                                         <i>
