@@ -1,6 +1,5 @@
 import React, {useContext, useEffect, useReducer} from 'react';
 import {Button, Card, Col} from "react-bootstrap";
-import axios from "axios";
 import {Link} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {BsSuitHeart, BsSuitHeartFill} from "react-icons/bs";

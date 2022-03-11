@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Alert, Button, Form} from "react-bootstrap";
-import axios from "axios";
 import {Link} from "react-router-dom";
 import useStyles from "./StyleLogin";
+import {getUserApi} from "../../api/apiUser";
 
 const Login = () => {
 
@@ -13,19 +13,21 @@ const Login = () => {
 
     const validationForm = () => {
         if (email && password) {
-            axios.get('http://localhost:4000/users',).then(response => {
-                response.data.map(value => {
-                    if (email === value.email && password === value.password) {
-                        /// Action Login
-                        localStorage.setItem('Email',email);
-                        localStorage.setItem('Password',password);
-                        localStorage.setItem('theme','blue');
-                        setErrorValidateLogin(null)
-                    } else {
-                        setErrorValidateLogin('Wrong password or email')
-                    }
-                })
-            }).catch(error => error);
+            getUserApi((isOk,data) => {
+                if (isOk) {
+                    data.map(value => {
+                        if (email === value.email && password === value.password) {
+                            /// Action Login
+                            localStorage.setItem('Email',email);
+                            localStorage.setItem('Password',password);
+                            localStorage.setItem('theme','blue');
+                            setErrorValidateLogin(null);
+                        } else {
+                            setErrorValidateLogin('Wrong password or email')
+                        }
+                    })
+                }
+            })
         }
     }
 

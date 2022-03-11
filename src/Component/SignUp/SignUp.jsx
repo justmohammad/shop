@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import axios from "axios";
 import {Link} from "react-router-dom";
 import useStyles from "./StyleSignUp";
+import {postUserApi} from "../../api/apiUser";
 
 const SignUp = () => {
 
@@ -48,10 +48,11 @@ const SignUp = () => {
         password ? validateEmail() : setErrorValidateEmail('Email is empty');
         email ? validatePassword() : setErrorValidatePassword('Password is empty');
         if (!errorValidateEmail && !errorValidatePassword) {
-            axios.post('http://localhost:4000/users', {
+            const data = {
                 email: email,
                 password: password
-            }).then(response => response).catch(error => error)
+            }
+            postUserApi(data)
 
                 localStorage.setItem('Email', email);
                 localStorage.setItem('Password', password);

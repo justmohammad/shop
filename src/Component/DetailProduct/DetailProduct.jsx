@@ -1,10 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useParams} from "react-router-dom";
-import axios from "axios";
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css';
 import {Button, Card, Form} from "react-bootstrap";
 import useStyles from "./StyleDetailProduct";
 import InnerImageZoom from "react-inner-image-zoom";
+import {getSingleProductApi} from "../../api/apiProduct";
+import {getCommentApi, postCommentApi} from "../../api/apiComment";
 
 const DetailProduct = () => {
 
@@ -18,30 +19,39 @@ const DetailProduct = () => {
     const [comments, setComments] = useState([]);
 
     const submitComment = () => {
-        axios.post('http://localhost:4000/comments', {
+        const data = {
             email: email,
             text: text
-        }).then()
+        }
+
+        postCommentApi(data)
+
         emailRef.current.value = null;
         commentRef.current.value = null;
     }
 
     useEffect(() => {
-        axios.get(`http://localhost:4000/product/${id}`).then(response => setData(response.data)).catch(error => console.log(error))
-    }, [])
+        getSingleProductApi(id, (isOk, data) => {
+            if (isOk) {
+                setData(data)
+            }
+        })
 
-    useEffect(() => {
-        axios.get(`http://localhost:4000/comments`).then(response => setComments(response.data)).catch(error => console.log(error))
+        getCommentApi((isOk, data) => {
+            if (isOk) {
+                setComments(data)
+            }
+        })
     }, [])
 
     return (
         <div style={{height: '500px'}}>
             <Card style={{width: '18rem', display: "inline-block"}}>
                 <InnerImageZoom className={classes.iiz__hint}
-                    src={`/${data.img}`}
-                    zoomSrc={`/${data.img}`}
-                    zoomType="hover"
-                    zoomPreload={true}
+                                src={`/${data.img}`}
+                                zoomSrc={`/${data.img}`}
+                                zoomType="hover"
+                                zoomPreload={true}
                 />
                 <Card.Body>
                     <Card.Title>{data.title}</Card.Title>
@@ -72,12 +82,12 @@ const DetailProduct = () => {
             <div className={classes.commentList}>
                 {
                     !comments.length ? <div>No comment yet</div> :
-                    comments.map(value =>
-                        <div className={classes.singleComment}>
-                            <div className={classes.emailComment}>{value.email}</div>
-                            <div className={classes.textComment}>{value.text}</div>
-                        </div>
-                    )
+                        comments.map(value =>
+                            <div className={classes.singleComment}>
+                                <div className={classes.emailComment}>{value.email}</div>
+                                <div className={classes.textComment}>{value.text}</div>
+                            </div>
+                        )
                 }
             </div>
         </div>

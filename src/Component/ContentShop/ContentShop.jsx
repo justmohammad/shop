@@ -2,11 +2,11 @@ import React, {useCallback, useContext, useEffect, useMemo, useState} from 'reac
 import {Container, Dropdown, Pagination, Row} from "react-bootstrap";
 import {BsChevronDown, BsFillCartFill} from "react-icons/bs";
 import Products from "../Products/Products";
-import axios from "axios";
 import {useTranslation} from "react-i18next";
 import ThemeContext from "../../Contexts/ThemeContext";
 import useStyles from "./styleContentShop";
 import CartContext from "../../Contexts/CartContext";
+import {getProductApi} from "../../api/apiProduct";
 
 const ContentShop = () => {
 
@@ -20,9 +20,14 @@ const ContentShop = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
-
-    }, [product])
+        getProductApi((isOk,data) => {
+            if (isOk) {
+                setProduct(data);
+            } else {
+                console.log(data)
+            }
+        })
+    }, [])
 
     const productWithSort = useCallback((state) => {
         if (state === 'ASC') {
