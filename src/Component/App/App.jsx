@@ -17,6 +17,7 @@ const App = () => {
     const [activeTheme, setActiveTheme] = useState('blue');
 
     return (
+
         <ThemeContext.Provider value={{
             theme: themeConfig[activeTheme],
             setActiveTheme

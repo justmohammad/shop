@@ -16,9 +16,11 @@ const ContentShop = () => {
     const [page, setPage] = useState(1);
     const [stateSort, setStateSort] = useState('ASC');
 
+
     useEffect(() => {
         axios.get('http://localhost:4000/product').then(response => setProduct(response.data))
-    }, [])
+
+    }, [product])
 
     const productWithSort = useCallback((state) => {
         if (state === 'ASC') {

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useReducer} from 'react';
 import {Button, Card, Col} from "react-bootstrap";
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -8,18 +8,21 @@ import ThemeContext from "../../Contexts/ThemeContext";
 import useStyles from "./StyleSingleProduct";
 import 'aos/dist/aos.css'
 import AOS from 'aos'
+import LikeReducer from "../../Reducer/LikeReducer";
 
 const SingleProduct = ({product, page}) => {
 
+    const {t} = useTranslation()
+    const {theme} = useContext(ThemeContext)
+    const [state, dispatchLike] = useReducer(LikeReducer, {likes: []})
+    const classes = useStyles(theme);
+
     useEffect(() => {
         AOS.init({
-            duration : 1000
+            duration: 1000
         });
     }, []);
 
-    const {t} = useTranslation()
-    const themeValues = useContext(ThemeContext)
-    const classes = useStyles(themeValues.theme)
     const saveToCart = (value) => {
         let arrayLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
 
@@ -44,14 +47,17 @@ const SingleProduct = ({product, page}) => {
     }
 
     const setLike = (value) => {
-        axios.put(`http://localhost:4000/product/${value.id}`, {
-            "id": value.id,
-            "img": value.img,
-            "title": value.title,
-            "price": value.price,
-            "added": value.added,
-            "like": !value.like
-        }).then(response => response.data).catch(error => console.log(error))
+        if (!state.likes.includes(value.id)) {
+            dispatchLike({
+                type: 'LIKE',
+                id: value.id
+            })
+        } else {
+            dispatchLike({
+                type: 'DISLIKE',
+                id: value.id
+            })
+        }
     }
 
     return (
@@ -67,7 +73,7 @@ const SingleProduct = ({product, page}) => {
                                 <Card.Title className={classes.cardTitle}>{value.title}
                                     <button onClick={() => setLike(value)}>
                                         <i>
-                                            {value.like ? <BsSuitHeartFill/> : <BsSuitHeart/>}
+                                            {state.likes.includes(value.id) ? <BsSuitHeartFill/> : <BsSuitHeart/>}
                                         </i>
                                     </button>
                                 </Card.Title>
