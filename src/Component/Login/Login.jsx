@@ -17,11 +17,11 @@ const Login = () => {
                 if (isOk) {
                     data.map(value => {
                         if (email === value.email && password === value.password) {
-                            /// Action Login
                             localStorage.setItem('Email',email);
                             localStorage.setItem('Password',password);
                             localStorage.setItem('theme','blue');
                             setErrorValidateLogin(null);
+                            window.location.reload();
                         } else {
                             setErrorValidateLogin('Wrong password or email')
                         }
@@ -33,7 +33,7 @@ const Login = () => {
 
     return (
         <div className={classes.login}>
-            <Form onSubmit={validationForm}>
+            <Form>
                 {errorValidateLogin && <Alert variant={"danger"} dismissible>Wrong password or email</Alert>}
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -51,7 +51,7 @@ const Login = () => {
                                   onChange={event => setPassword(event.target.value)}
                                   placeholder="Password"/>
                 </Form.Group>
-                <Button variant="primary" className={"form-control"} type={"submit"}>
+                <Button variant="primary" className={"form-control"} onClick={validationForm}>
                     Submit
                 </Button>
             </Form>

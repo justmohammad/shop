@@ -10,13 +10,16 @@
       "id": 2,
       "img": "images/image2.png",
       "title": "Dipped Tripod Stool",
-      "price": 36
+      "price": 36,
+      "added": true,
+      "like": true
     },
     {
       "id": 3,
       "img": "images/image3.png",
       "title": "Dipped Tripod Stool",
-      "price": 37
+      "price": 37,
+      "added": true
     },
     {
       "id": 4,
