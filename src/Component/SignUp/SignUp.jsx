@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import useStyles from "./StyleSignUp";
 import {postUserApi} from "../../api/apiUser";
 
 const SignUp = () => {
 
     const classes = useStyles();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [errorValidateEmail, setErrorValidateEmail] = useState(null);
@@ -16,6 +17,10 @@ const SignUp = () => {
         validateEmail()
         validatePassword()
     }, [email, password])
+
+    if (isLoggedIn) {
+        return <Redirect to="/" />;
+    }
 
     const validateEmail = () => {
         const emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -53,6 +58,7 @@ const SignUp = () => {
                 password: password
             }
             postUserApi(data)
+            setIsLoggedIn(true)
 
                 localStorage.setItem('Email', email);
                 localStorage.setItem('Password', password);

@@ -1,15 +1,20 @@
 import React, {useState} from 'react';
 import {Alert, Button, Form} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 import useStyles from "./StyleLogin";
 import {getUserApi} from "../../api/apiUser";
 
 const Login = () => {
 
-    const classes = useStyles()
+    const classes = useStyles();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [email, setEmail] = useState(null);
     const [password, setPassword] = useState(null);
     const [errorValidateLogin, setErrorValidateLogin] = useState(null);
+
+    if (isLoggedIn) {
+        return <Redirect to="/" />;
+    }
 
     const validationForm = () => {
         if (email && password) {
@@ -20,8 +25,9 @@ const Login = () => {
                             localStorage.setItem('Email',email);
                             localStorage.setItem('Password',password);
                             localStorage.setItem('theme','blue');
-                            setErrorValidateLogin(null);
+                            setIsLoggedIn(true);
                             window.location.reload();
+                            setErrorValidateLogin(null);
                         } else {
                             setErrorValidateLogin('Wrong password or email')
                         }
